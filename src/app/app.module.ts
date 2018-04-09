@@ -5,14 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
+import { NgxWebGlModule } from './webGLLibrary';
+import { SpheresComponent } from './components/spheres/spheres.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpheresComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxWebGlModule
   ],
   providers: [],
   bootstrap: [AppComponent]
