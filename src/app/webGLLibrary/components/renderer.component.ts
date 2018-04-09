@@ -17,9 +17,21 @@ import { OrbitControlsComponent, VRControlsComponent } from './controls';
 })
 export class RendererComponent implements OnInit, AfterContentInit {
 
-  @Input() height: number = 500;
-  @Input() width: number = 500;
+  private height: number;
+  private width: number;
   @Input() autoSize: boolean = true;
+
+  private gotResolution: boolean = false;
+  @Input('height')
+  set setHeight(value) {
+    this.height = value;
+    this.gotResolution = true;
+  }
+  @Input('width')
+  set setWidth(value) {
+    this.width = value;
+    this.gotResolution = true;
+  }
 
   @Input()
   set vrMode(val: boolean) {
@@ -35,7 +47,7 @@ export class RendererComponent implements OnInit, AfterContentInit {
   @ContentChild(VRControlsComponent)
   vrControls: VRControlsComponent;
 
-  @ContentChild(PerspectiveCameraComponent, { descendants: true })
+  @ContentChild(PerspectiveCameraComponent/* , { descendants: true } */)
   camera: PerspectiveCameraComponent;
 
   @ViewChild('canvas') canvas: any;
@@ -112,8 +124,8 @@ export class RendererComponent implements OnInit, AfterContentInit {
 
   private calcSize(): void {
     if(this.autoSize) {
-      this.height = window.innerHeight;
-      this.width = window.innerWidth;
+      this.height = this.gotResolution && !this.height ? window.innerHeight : this.height;
+      this.width = this.gotResolution && !this.width ? window.innerWidth : this.width;
 
       if(this.renderer) {
         this.renderer.setSize(this.width, this.height);

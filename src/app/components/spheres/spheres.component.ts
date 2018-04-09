@@ -24,6 +24,13 @@ export class SpheresComponent implements AfterViewInit {
 
   constructor(private element: ElementRef, private ngZone: NgZone) {}
 
+
+  test(parent) {
+    console.log(parent);
+    console.log('width: ', parent.clientWidth);
+    console.log('height: ', parent.clientHeight);
+  }
+
   ngAfterViewInit(): void {
     this.animate();
   }
@@ -39,7 +46,7 @@ export class SpheresComponent implements AfterViewInit {
     function animate() {
       for (const shape of balls) {
         shape.positionZ = Math.cos(circleRotation) * circle;
-        circleRotation += 0.002;
+        circleRotation += 0.0002;
       }
 
       zone.runOutsideAngular(() => requestAnimationFrame(() => animate()));

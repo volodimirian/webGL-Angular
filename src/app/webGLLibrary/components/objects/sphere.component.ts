@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import * as THREE from 'three';
 import { Mesh, SphereGeometry, MeshNormalMaterial } from 'three';
 
 @Component({

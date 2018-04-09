@@ -1,6 +1,9 @@
 import { Component, Input, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { OrbitControls, Scene } from 'three';
-import 'three/examples/js/controls/OrbitControls.js';
+import * as THREE from 'three';
+import { OrbitControls as OrbitControlsType, Scene } from 'three';
+import * as createOrbitControls from 'three-orbit-controls';
+
+const OrbitControls = createOrbitControls(THREE);
 
 @Component({
   selector: 'ngx-orbit-controls',
@@ -15,7 +18,7 @@ export class OrbitControlsComponent implements OnDestroy {
   @Input() enableKeys: boolean = true;
   @Input() enableZoom: boolean = true;
 
-  controls: OrbitControls;
+  controls: OrbitControlsType;
 
   setupControls(camera, renderer) {
     this.controls = new OrbitControls(camera, renderer.domElement);

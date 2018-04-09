@@ -1,6 +1,7 @@
-<div>
+<div [ngStyle]="{'width': '100%', 'height': 'calc(100vh - 30px)'}" #parent>
   <!-- The Sphere Component -->
-  <ngx-renderer [vrMode]="isVRMode" class="container">
+  <button (click)="test(parent)">test</button>
+  <ngx-renderer [vrMode]="isVRMode" class="container" [width]="parent.clientWidth" [height]="parent.clientHeight" >
     <ngx-orbit-controls [enabled]="!isVRMode">
     </ngx-orbit-controls>
     <ngx-vr-controls [enabled]="isVRMode">
@@ -14,6 +15,5 @@
     </ngx-scene>
   </ngx-renderer>
   <!-- Enable VR Mode -->
-  <vr-toggle (toggle)="isVRMode = $event" (fullscreen)="onFullScreen()">
-  </vr-toggle>
+  <!-- <vr-toggle (toggle)="isVRMode = $event" (fullscreen)="onFullScreen()"></vr-toggle> -->
 </div>
